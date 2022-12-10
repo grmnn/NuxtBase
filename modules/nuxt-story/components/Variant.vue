@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from '#imports'
+
 interface IVariant {
   title: string
   type?: 'col' | 'row' | 'full'
@@ -9,7 +10,7 @@ const props = withDefaults(defineProps<IVariant>(), {
 })
 
 const computedClass = computed(() => ({
-  'rounded border border-grey-700 p-4 lg:flex lg:justify-between lg:p-8': props.type !== 'full',
+  'rounded border border-grey-700 p-4 flex items-start lg:space-x-12 lg:p-8': props.type !== 'full',
   'border-b border-b-grey-700 pb-12': props.type === 'full',
   'flex-col space-y-4 lg:space-x-12 lg:space-y-0 lg:flex-row': props.type === 'row',
   'flex-col space-y-4': props.type === 'col',

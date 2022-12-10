@@ -72,7 +72,7 @@ function closeModal() {
             v-if="showClose"
             variant="secondary"
             alternative
-            size="small"
+            small
             icon="close"
             @click="closeModal"
           />

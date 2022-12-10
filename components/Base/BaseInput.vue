@@ -8,14 +8,14 @@ interface IInputProps {
   disabled?: boolean
   errorMessage?: string
 
-  size?: 'small' | 'default' | 'large'
+  small?: boolean
   prefix?: keyof typeof icons
   suffix?: keyof typeof icons
 }
 
 const props = withDefaults(defineProps<IInputProps>(), {
   type: 'text',
-  size: 'default',
+  small: false,
 })
 
 const emits = defineEmits(['update:modelValue', 'change'])
@@ -35,15 +35,12 @@ const computedInputClass = $computed(() => {
   }
 
   const sizing = {
-    'h-[32px] leading-[32px] text-sm px-2': props.size === 'small',
-    'h-[40px] leading-[40px] text-base px-3': props.size === 'default',
-    'h-[48px] leading-[48px] text-lg px-4': props.size === 'large',
+    'h-[32px] leading-[32px] text-sm px-2': props.small,
+    'h-[40px] leading-[40px] text-base px-3': !props.small,
   }
   const noFix = !props.prefix && !props.suffix
   const border = {
-    'border border-grey-500 focus:border-grey-200': noFix,
-    'rounded': (props.size === 'small' || props.size === 'default') && noFix,
-    'rounded-lg': props.size === 'large' && noFix,
+    'border border-grey-500 focus:border-grey-200 rounded': noFix,
   }
 
   const fixBorder = {
@@ -67,11 +64,9 @@ const computedWrapperClass = $computed(() => {
   }
   const hasFix = props.prefix || props.suffix
   const border = {
-    'border border-grey-500 overflow-hidden': hasFix,
+    'border border-grey-500 overflow-hidden rounded': hasFix,
     'border-grey-500': !hasFocus,
     'border-grey-200': hasFocus,
-    'rounded': hasFix && (props.size === 'small' || props.size === 'default'),
-    'rounded-lg': hasFix && props.size === 'large',
   }
 
   return {
@@ -86,9 +81,8 @@ const computedIconClass = $computed(() => {
   }
 
   const size = {
-    'w-[32px]': props.size === 'small',
-    'w-[40px]': props.size === 'default',
-    'w-[48px] text-lg': props.size === 'large',
+    'w-[32px]': props.small,
+    'w-[40px]': !props.small,
   }
 
   return {
@@ -110,7 +104,7 @@ const computedIconClass = $computed(() => {
       >
         <BaseIcon
           :name="prefix"
-          :size="size === 'large' ? '24' : '20'"
+          size="20"
         />
       </div>
       <input
@@ -129,15 +123,18 @@ const computedIconClass = $computed(() => {
       >
         <BaseIcon
           :name="suffix"
-          :size="size === 'large' ? '24' : '20'"
+          size="20"
         />
       </div>
     </div>
     <p
       v-if="errorMessage"
-      class="mt-2 flex items-center space-x-2 text-sm text-error"
+      class="mt-2 flex items-center space-x-2 text-xs text-error"
     >
-      <BaseIcon name="error" />
+      <BaseIcon
+        name="error"
+        size="18"
+      />
       <span> {{ errorMessage }}</span>
     </p>
   </label>

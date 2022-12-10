@@ -11,7 +11,6 @@
       </p>
       <BaseButton
         to="/register"
-        size="large"
       >
         Get started
       </BaseButton>

@@ -142,15 +142,16 @@ function onChange(errorKey: keyof IAuthFormData) {
 </script>
 
 <template>
-  <div class="w-full lg:mx-auto lg:max-w-lg">
-    <div class="mb-6 rounded-xl bg-grey-900 py-8 px-6  backdrop-blur-lg lg:py-14 lg:px-10">
+  <div class="w-full lg:mx-auto lg:max-w-md">
+    <div class="mb-6 rounded-xl bg-grey-900 py-8 px-6 backdrop-blur-lg lg:py-10 lg:px-8">
       <h1
-        class="mb-10 text-2xl font-semibold"
+        class="mb-8 text-2xl font-semibold"
       >
         {{ isLogin ? 'Sign in to your account' : 'Create your account' }}
       </h1>
 
       <form
+        class="flex flex-col"
         novalidate
         @submit.prevent="onSubmit"
       >
@@ -161,7 +162,6 @@ function onChange(errorKey: keyof IAuthFormData) {
             class="mb-4"
             type="email"
             prefix="email"
-            :size="isDesktop ? 'large' : 'default'"
             label="E-Mail"
             placeholder="E-Mail Adress"
             :error-message="formData.email.error"
@@ -173,7 +173,6 @@ function onChange(errorKey: keyof IAuthFormData) {
             :class="isLogin ? 'mb-12' : 'mb-4'"
             type="password"
             prefix="password"
-            :size="isDesktop ? 'large' : 'default'"
             label="Password"
             placeholder="Password"
             :error-message="formData.password.error"
@@ -186,7 +185,6 @@ function onChange(errorKey: keyof IAuthFormData) {
             class="mb-12"
             type="password"
             prefix="password"
-            :size="isDesktop ? 'large' : 'default'"
             label="Confirm Password"
             placeholder="Password repeat"
             :error-message="formData.confirmPassword.error"
@@ -196,8 +194,7 @@ function onChange(errorKey: keyof IAuthFormData) {
           <BaseButton
             key="button"
             type="submit"
-            :size="isDesktop ? 'large' : 'default'"
-            class="w-full"
+
             :loading="isLoading"
           >
             {{ isLogin ? 'Continue' : 'Create Account' }}

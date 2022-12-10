@@ -7,32 +7,25 @@ const inputValue = ref('Disabled with value')
     <Variant title="Sizes">
       <BaseInput
         placeholder="Small"
-        size="small"
+        small
       />
       <BaseInput
         placeholder="Default"
-        size="default"
-      />
-      <BaseInput
-        placeholder="Large"
-        size="large"
       />
     </Variant>
 
     <Variant title="Sizes, Prefix and Suffix">
       <BaseInput
-        placeholder="Small"
-        size="small"
+        placeholder="Small Prefix"
+        small
         prefix="upload"
       />
       <BaseInput
-        placeholder="Default"
-        size="default"
+        placeholder="Default Suffix"
         suffix="upload"
       />
       <BaseInput
-        placeholder="Large"
-        size="large"
+        placeholder="Default Prefix & Suffix"
         prefix="upload"
         suffix="upload"
       />
@@ -41,20 +34,18 @@ const inputValue = ref('Disabled with value')
     <Variant title="Disabled">
       <BaseInput
         placeholder="Disabled icon"
-        size="small"
+        small
         prefix="upload"
         :disabled="true"
       />
       <BaseInput
         placeholder="Disabled no icon"
-        size="default"
 
         :disabled="true"
       />
       <BaseInput
         v-model="inputValue"
         placeholder="Disabled with value"
-        size="large"
         prefix="upload"
         suffix="upload"
         :disabled="true"
@@ -67,7 +58,6 @@ const inputValue = ref('Disabled with value')
     >
       <BaseInput
         placeholder="E-Mail"
-        size="small"
         prefix="upload"
         error-message="Please use a valid e-mail."
       />
