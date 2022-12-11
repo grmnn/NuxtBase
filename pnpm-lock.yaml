@@ -6,6 +6,7 @@ specifiers:
   '@supabase/supabase-js': ^2.1.2
   '@vueuse/core': ^9.6.0
   '@vueuse/nuxt': ^9.6.0
+  dayjs: ^1.11.7
   eslint: ^8.29.0
   eslint-plugin-tailwindcss: ^3.7.1
   nuxt: 3.0.0
@@ -16,6 +17,7 @@ specifiers:
 
 dependencies:
   '@supabase/supabase-js': 2.1.2
+  dayjs: 1.11.7
 
 devDependencies:
   '@antfu/eslint-config': 0.33.1_ha6vam6werchizxrnqvarmz2zu
@@ -2149,6 +2151,10 @@ packages:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
     engines: {node: '>= 12'}
     dev: true
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
