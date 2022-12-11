@@ -7,7 +7,7 @@ interface IInputProps {
   type?: string
   disabled?: boolean
   errorMessage?: string
-
+  readonly?: boolean
   small?: boolean
   prefix?: keyof typeof icons
   suffix?: keyof typeof icons
@@ -16,6 +16,7 @@ interface IInputProps {
 const props = withDefaults(defineProps<IInputProps>(), {
   type: 'text',
   small: false,
+  readonly: false,
 })
 
 const emits = defineEmits(['update:modelValue', 'change'])
@@ -29,11 +30,6 @@ function onInput(e: Event) {
 }
 
 const computedInputClass = $computed(() => {
-  const defaults = {
-    'w-full placeholder:text-grey-500 bg-transparent outline-none flex-1': true,
-    'disabled:bg-grey-900 disabled:text-grey-700 disabled:placeholder:text-grey-700': true,
-  }
-
   const sizing = {
     'h-[32px] leading-[32px] text-sm px-2': props.small,
     'h-[40px] leading-[40px] text-base px-3': !props.small,
@@ -51,7 +47,6 @@ const computedInputClass = $computed(() => {
   }
 
   return {
-    ...defaults,
     ...fixBorder,
     ...border,
     ...sizing,
@@ -59,19 +54,12 @@ const computedInputClass = $computed(() => {
 })
 
 const computedWrapperClass = $computed(() => {
-  const defaults = {
-    'relative flex': true,
-  }
   const hasFix = props.prefix || props.suffix
-  const border = {
+
+  return {
     'border border-grey-500 overflow-hidden rounded': hasFix,
     'border-grey-500': !hasFocus,
     'border-grey-200': hasFocus,
-  }
-
-  return {
-    ...border,
-    ...defaults,
   }
 })
 
@@ -94,8 +82,12 @@ const computedIconClass = $computed(() => {
 
 <template>
   <label class="block">
-    <span class="mb-2 inline-block text-sm ">{{ label }}</span>
+    <span
+      v-if="label"
+      class="mb-2 inline-block text-sm "
+    >{{ label }}</span>
     <div
+      class="relative flex"
       :class="computedWrapperClass"
     >
       <div
@@ -108,11 +100,17 @@ const computedIconClass = $computed(() => {
         />
       </div>
       <input
+        class="
+          w-full flex-1 bg-transparent outline-none placeholder:text-grey-500
+        disabled:bg-grey-900 disabled:text-grey-700
+        disabled:placeholder:text-grey-700
+        "
         :class="computedInputClass"
         :type="type"
         :placeholder="placeholder"
         :value="modelValue"
         :disabled="disabled"
+        :readonly="readonly"
         @focusin="hasFocus = true"
         @focusout="hasFocus = false"
         @input="onInput"
