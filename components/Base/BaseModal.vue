@@ -99,4 +99,3 @@ function closeModal() {
     </Transition>
   </Teleport>
 </template>
-

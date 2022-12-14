@@ -3,4 +3,3 @@
     <BaseAuthenticationForm type="register" />
   </article>
 </template>
-
