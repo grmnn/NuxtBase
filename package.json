@@ -11,15 +11,15 @@
     "analyze": "nuxt analyze"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.2.0",
+    "@supabase/supabase-js": "^2.2.1",
     "dayjs": "^1.11.7"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.0",
     "@pinia/nuxt": "^0.4.6",
-    "@vueuse/core": "^9.6.0",
-    "@vueuse/nuxt": "^9.6.0",
-    "eslint": "^8.29.0",
+    "@vueuse/core": "^9.7.0",
+    "@vueuse/nuxt": "^9.7.0",
+    "eslint": "^8.30.0",
     "eslint-plugin-tailwindcss": "^3.7.1",
     "nuxt": "3.0.0",
     "nuxt-icon": "^0.1.8",
