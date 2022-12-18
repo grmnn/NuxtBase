@@ -52,6 +52,19 @@ const firstDayOfMonthIndex = computed(() => date.startOf('month').weekday())
 const lastDayOfPreviousMonth = computed(() => date.subtract(1, 'month').daysInMonth())
 const lastDayOfMonth = computed(() => date.endOf('month').day())
 
+function getDayClasses(day: number) {
+  const isSelected = getDateViaDay(day).isSame(props.modelValue, 'day')
+  const isToday = getDateViaDay(day).isSame(dayjs(), 'day')
+  const isDisabled = props.disableFutureDates && isFutureDate(day)
+
+  return {
+    'bg-white text-grey-900': isSelected,
+    'border-2 border-white': isToday,
+    'text-grey-200 cursor-default': isDisabled,
+    'hover:bg-white/10': !isSelected && !isToday && !isDisabled,
+  }
+}
+
 const computedDisplayValue = computed(() => {
   return dateValue.format('DD.MM.YYYY')
 })
@@ -82,9 +95,22 @@ function setDate(day: number) {
 
 let showDatepicker = $ref(false)
 
+function debounce(callback: (...args: any[]) => any, delay = 250) {
+  let timeoutId: ReturnType<typeof setTimeout>
+
+  return (...args: any[]) => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      callback(...args)
+    }, delay)
+  }
+}
+
 function onMouseenter() {
   showDatepicker = true
 }
+
+const debouncedMouseLeave = debounce(onMouseleave)
 function onMouseleave() {
   showDatepicker = false
   date = dayjs(props.modelValue)
@@ -94,7 +120,7 @@ function onMouseleave() {
 <template>
   <div
     @mouseenter="onMouseenter"
-    @mouseleave="onMouseleave"
+    @mouseleave="debouncedMouseLeave"
   >
     <BaseInput
       v-model="computedDisplayValue"
@@ -149,12 +175,8 @@ function onMouseleave() {
           <div
             v-for="day in daysInMonth"
             :key="day"
-            class="flex aspect-square cursor-pointer items-center justify-center rounded-full"
-            :class="{
-              'bg-white text-grey-900': getDateViaDay(day).isSame(modelValue, 'day'),
-              'border-2 border-white': getDateViaDay(day).isSame(dayjs(), 'day'),
-              'text-grey-200 cursor-default': disableFutureDates && isFutureDate(day),
-            }"
+            class="flex aspect-square cursor-pointer items-center justify-center rounded-full "
+            :class="getDayClasses(day)"
             @click="setDate(day)"
           >
             {{ day }}
