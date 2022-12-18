@@ -101,7 +101,7 @@ const computedIconClass = $computed(() => {
       </div>
       <input
         class="
-          w-full flex-1 bg-transparent outline-none placeholder:text-grey-500
+          w-full flex-1 bg-black outline-none placeholder:text-grey-500
         disabled:bg-grey-900 disabled:text-grey-700
         disabled:placeholder:text-grey-700
         "
