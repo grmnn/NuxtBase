@@ -16,7 +16,7 @@
     "vue/define-macros-order": "off",
     "@typescript-eslint/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
     "no-console": "off",
-    "curly": 0,
+    "curly": "off",    
     "tailwindcss/no-custom-classname": "off"
   }
 }

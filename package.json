@@ -17,8 +17,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.0",
     "@pinia/nuxt": "^0.4.6",
-    "@vueuse/core": "^9.7.0",
-    "@vueuse/nuxt": "^9.7.0",
+    "@vueuse/core": "^9.8.2",
+    "@vueuse/nuxt": "^9.8.2",
     "eslint": "^8.30.0",
     "eslint-plugin-tailwindcss": "^3.7.1",
     "nuxt": "3.0.0",

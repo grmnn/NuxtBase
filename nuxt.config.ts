@@ -5,7 +5,7 @@ export default defineNuxtConfig({
         lang: 'en',
       },
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1.0',
+      viewport: 'width=device-width, initial-scale=1.0, user-scalable=0',
       title: 'NuxtBase - Nuxt 3 Starter Template',
       meta: [
         { name: 'description', content: 'NuxtBase - Nuxt 3 Starter Template' },
