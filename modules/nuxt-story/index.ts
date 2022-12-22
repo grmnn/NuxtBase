@@ -15,12 +15,12 @@ export default defineNuxtModule({
   async setup(options, nuxt) {
     if (!nuxt.options.dev)
       return
-    const { resolve } = createResolver(import.meta.url)
+    const resolver = createResolver(import.meta.url)
 
     const componentsDir = fileURLToPath(new URL('./components', import.meta.url))
 
     await addComponentsDir({
-      path: resolve(componentsDir),
+      path: resolver.resolve(componentsDir),
       pathPrefix: false,
       pattern: '**/*.vue',
       transpile: true,
@@ -28,7 +28,7 @@ export default defineNuxtModule({
 
     const layoutsDir = fileURLToPath(new URL('./layouts', import.meta.url))
     const layoutTemplate = addTemplate({
-      src: resolve(layoutsDir, 'story-layout.vue'),
+      src: resolver.resolve(layoutsDir, 'story-layout.vue'),
       write: true,
     })
     addLayout(layoutTemplate, 'story-layout')
@@ -38,7 +38,7 @@ export default defineNuxtModule({
       pages.push({
         name: 'Story',
         path: '/story',
-        file: resolve(pagesDir, 'story.vue'),
+        file: resolver.resolve(pagesDir, 'story.vue'),
       })
     })
   },

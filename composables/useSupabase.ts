@@ -21,9 +21,8 @@ export const useSupabase = (): SupabaseClient | null => {
           storageKey: 'supabase.auth.session',
         },
       },
-
     )
   }
 
-  return nuxtApp._supabaseClient
+  return nuxtApp._supabaseClient as SupabaseClient
 }

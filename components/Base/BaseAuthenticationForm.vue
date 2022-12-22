@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { breakpointsTailwind } from '@vueuse/core'
-
 interface IAuthProps {
   type: 'login' | 'register'
 }
@@ -22,8 +20,6 @@ interface IAuthFormData {
 
 const props = defineProps<IAuthProps>()
 const authStore = useAuth()
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const isDesktop = breakpoints.greaterOrEqual('lg')
 
 const isLogin = $computed(() => props.type === 'login')
 

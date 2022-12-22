@@ -6,6 +6,7 @@ interface IButtonProps {
   small?: boolean
   alternative?: boolean
   icon?: keyof typeof icons
+  iconSize?: string
   disabled?: boolean
   loading?: boolean
 
@@ -72,7 +73,12 @@ const computedAlignment = $computed(() => {
   }
 })
 
-const iconOnlySize = $computed(() => props.small ? '20' : '24')
+const iconOnlySize = $computed(() => {
+  if (props.iconSize)
+    return props.iconSize
+
+  return props.small ? '20' : '24'
+})
 </script>
 
 <template>

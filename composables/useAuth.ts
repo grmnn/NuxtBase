@@ -79,9 +79,9 @@ export const useAuth = defineStore('Authentication', () => {
       return
     }
 
-    const parsedSession = JSON.parse(storedSession)
+    const parsedSession = JSON.parse(storedSession) as Session
 
-    userSession.value = parsedSession as Session
+    userSession.value = parsedSession
   }
 
   return {

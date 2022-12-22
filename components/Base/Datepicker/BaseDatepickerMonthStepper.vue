@@ -9,7 +9,7 @@ interface IDatepickerMonthStepperProps {
   fullWidth?: boolean
 }
 
-const props = defineProps<IDatepickerMonthStepperProps>()
+defineProps<IDatepickerMonthStepperProps>()
 
 const emits = defineEmits(['previousMonth', 'nextMonth'])
 
@@ -29,6 +29,8 @@ function nextMonth() {
   >
     <BaseButton
       icon="chevron-left"
+      icon-size="28"
+      small
       alternative
       @click="previousMonth"
     />
@@ -40,6 +42,8 @@ function nextMonth() {
     </h1>
     <BaseButton
       icon="chevron-right"
+      icon-size="28"
+      small
       alternative
       @click="nextMonth"
     />
